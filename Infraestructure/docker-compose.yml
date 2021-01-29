@@ -1,0 +1,15 @@
+version: "3.5"
+
+services:
+  database:
+    image: "microsoft/mssql-server-linux"
+    container_name: "example_database"
+    environment:
+      SA_PASSWORD: "_mypassword1234_"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - db-data-example:/var/opt/mssql
+    ports:
+      - "6433:1433"
+volumes:
+  db-data-example:
