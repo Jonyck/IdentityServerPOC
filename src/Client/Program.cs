@@ -1,7 +1,7 @@
 ﻿using IdentityModel.Client;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
+using System.Text.Json;
 
 namespace Client
 {
@@ -34,8 +34,6 @@ namespace Client
                 return;
             }
 
-            //Console.WriteLine(tokenResponse.Json);
-
             // call api
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
@@ -48,7 +46,7 @@ namespace Client
             else
             {
                 var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(JArray.Parse(content));
+                Console.WriteLine(JsonSerializer.Serialize(content));
             }
         }
     }
